@@ -1,0 +1,40 @@
+﻿@model IEnumerable<EatFast_Menux.Domain.Entities.Reserva>
+
+<h2>Reservas</h2>
+
+<a class="btn btn-primary mb-3" asp-action="Crear">Nueva Reserva</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Personas</th>
+            <th>Teléfono</th>
+            <th>Observaciones</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reserva in Model)
+        {
+            <tr>
+                <td>@reserva.NombreCliente</td>
+                <td>@reserva.FechaReserva.ToShortDateString()</td>
+                <td>@reserva.CantidadPersonas</td>
+                <td>@reserva.Telefono</td>
+                <td>@reserva.Observaciones</td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@reserva.Id" class="btn btn-warning btn-sm me-1">Editar</a>
+
+                    <form asp-action="Eliminar" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@reserva.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Desea eliminar esta reserva?');">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

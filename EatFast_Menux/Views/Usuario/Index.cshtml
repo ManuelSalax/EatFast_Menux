@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EatFast_Menux.Domain.Entities.Usuario>
+
+<h2>Usuarios</h2>
+
+<a class="btn btn-primary mb-3" asp-action="Crear">Nuevo Usuario</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.Nombre</td>
+                <td>@usuario.Email</td>
+                <td>@usuario.Rol</td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@usuario.Id" class="btn btn-warning btn-sm me-1">Editar</a>
+                    <form asp-action="Eliminar" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@usuario.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Desea eliminar este usuario?');">
+                            Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

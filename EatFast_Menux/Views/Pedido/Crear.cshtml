@@ -1,0 +1,17 @@
+﻿@model EatFast_Menux.Domain.Entities.Pedido
+
+@{
+    ViewData["Title"] = "Crear Pedido";
+}
+
+<h2>Crear Nuevo Pedido</h2>
+
+<form asp-action="Crear" method="post" class="mt-3">
+    <div class="form-group">
+        <label asp-for="ClienteNombre"></label>
+        <input asp-for="ClienteNombre" class="form-control" />
+        <span asp-validation-for="ClienteNombre" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-2">Guardar Pedido</button>
+</form>
