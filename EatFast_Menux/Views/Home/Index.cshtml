@@ -1,8 +1,42 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Bienvenido a MenuX";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4 fw-bold">¡Bienvenido a <span class="text-primary">MenuX</span>!</h1>
+        <p class="lead mt-3">Tu plataforma digital para optimizar la operación de tu restaurante: toma de pedidos, gestión de reservas y administración de usuarios en un solo lugar.</p>
+    </div>
+
+    <div class="row text-center mt-5">
+
+        <!-- PEDIDOS -->
+        <div class="col-md-4 mb-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Pedidos" width="80" class="mb-3" />
+            <h4 class="fw-semibold">Gestión de Pedidos</h4>
+            <p>Visualiza, registra y organiza los pedidos de los clientes en tiempo real, con conexión directa a cocina.</p>
+            <a asp-controller="Pedido" asp-action="Index" class="btn btn-outline-primary btn-sm mt-2">Ir a Pedidos</a>
+        </div>
+
+        <!-- RESERVAS -->
+        <div class="col-md-4 mb-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046784.png" alt="Reservas" width="80" class="mb-3" />
+            <h4 class="fw-semibold">Reservas Inteligentes</h4>
+            <p>Administra las reservas con fechas, horarios, número de personas y notas importantes del cliente.</p>
+            <a asp-controller="Reserva" asp-action="Index" class="btn btn-outline-success btn-sm mt-2">Ir a Reservas</a>
+        </div>
+
+        <!-- USUARIOS -->
+        <div class="col-md-4 mb-4">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Usuarios" width="80" class="mb-3" />
+            <h4 class="fw-semibold">Administración de Usuarios</h4>
+            <p>Registra, edita y elimina usuarios del sistema. Controla roles y accesos para cada miembro del equipo.</p>
+            <a asp-controller="Usuario" asp-action="Index" class="btn btn-outline-secondary btn-sm mt-2">Ir a Usuarios</a>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <img src="https://cdn-icons-png.flaticon.com/512/3790/3790163.png" alt="Restaurante" width="100" class="mb-2" />
+        <p class="text-muted">MenuX — Software eficiente para restaurantes modernos</p>
+    </div>
 </div>
