@@ -14,11 +14,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<PedidoService>();
 builder.Services.AddScoped<ReservaService>();
 builder.Services.AddScoped<UsuarioService>();
-
+builder.Services.AddScoped<InventarioService>();
 // Repositorios
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IInventarioRepository, InventarioRepository>();
+
 
 // MVC
 builder.Services.AddControllersWithViews();

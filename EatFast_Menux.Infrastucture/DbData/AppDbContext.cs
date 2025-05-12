@@ -16,6 +16,8 @@ namespace EatFast_Menux.Infrastucture.DbData
         public DbSet<PedidoItem> PedidoItems { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<ProductoInventario> ProductosInventario { get; set; }
+        public DbSet<PedidoDomicilio> PedidosDomicilio { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

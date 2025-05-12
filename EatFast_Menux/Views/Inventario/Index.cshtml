@@ -1,0 +1,46 @@
+﻿@model IEnumerable<EatFast_Menux.Domain.Entities.ProductoInventario>
+
+<h2>Inventario de Productos</h2>
+
+<!-- Alerta de inventario bajo -->
+@if (TempData["AlertaInventario"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>@TempData["AlertaInventario"]</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+}
+
+<a class="btn btn-primary mb-3" asp-action="Crear">Agregar nuevo producto</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Nivel Mínimo</th>
+            <th>Unidad</th>
+            <th>Última Actualización</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr class="@(p.Cantidad <= p.NivelMinimo ? "table-danger" : "")">
+                <td>@p.Nombre</td>
+                <td>@p.Cantidad</td>
+                <td>@p.NivelMinimo</td>
+                <td>@p.UnidadMedida</td>
+                <td>@p.FechaUltimaActualizacion.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@p.Id" class="btn btn-sm btn-warning">Editar</a>
+                    <form asp-action="Eliminar" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="@p.Id" />
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar este producto?')">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

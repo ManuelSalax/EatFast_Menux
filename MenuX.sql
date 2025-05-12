@@ -96,3 +96,46 @@ INSERT INTO PedidoItems (NombreProducto, Cantidad, Precio, PedidoId) VALUES
 ('Pizza Margarita', 2, 8.99, @pedidoId),
 ('Limonada', 2, 3.50, @pedidoId);
 GO
+
+IF OBJECT_ID('ProductosInventario', 'U') IS NULL
+BEGIN
+    CREATE TABLE ProductosInventario (
+        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        Nombre NVARCHAR(100) NOT NULL,
+        Cantidad INT NOT NULL,
+        NivelMinimo INT NOT NULL,
+        UnidadMedida NVARCHAR(20) NOT NULL,
+        FechaUltimaActualizacion DATETIME NOT NULL
+    );
+END
+GO
+
+-- ======================================
+-- TABLA: Repartidores
+-- ======================================
+IF OBJECT_ID('Repartidores', 'U') IS NULL
+BEGIN
+    CREATE TABLE Repartidores (
+        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        Nombre NVARCHAR(100) NOT NULL,
+        Disponible BIT NOT NULL
+    );
+END
+GO
+
+-- ======================================
+-- TABLA: PedidosDomicilio
+-- ======================================
+IF OBJECT_ID('PedidosDomicilio', 'U') IS NULL
+BEGIN
+    CREATE TABLE PedidosDomicilio (
+        Id UNIQUEIDENTIFIER PRIMARY KEY,
+        PedidoId UNIQUEIDENTIFIER NOT NULL,
+        DireccionEntrega NVARCHAR(200) NOT NULL,
+        Estado INT NOT NULL, -- 0: Pendiente, 1: EnCamino, 2: Entregado, 3: Cancelado
+        RepartidorId UNIQUEIDENTIFIER NOT NULL,
+        FechaAsignacion DATETIME NOT NULL,
+        CONSTRAINT FK_Repartidor FOREIGN KEY (RepartidorId) REFERENCES Repartidores(Id)
+    );
+END
+GO
